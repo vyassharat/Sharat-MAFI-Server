@@ -6,7 +6,6 @@ from scipy.stats import norm
 
 class BSMPricer(IPricer):
     def price(self, option: Option):
-
         d1 = self.compute_d1(
             option.spotPrice,
             option.strikePrice,
@@ -19,8 +18,6 @@ class BSMPricer(IPricer):
             d1,
             option.volatility,
             option.timeToMaturity)
-
-
 
         if option.optionType == OptionType.CALL:
             price = (option.spotPrice * np.exp(-1 * option.dividendYield * option.timeToMaturity) * norm.cdf(d1))
